@@ -1,6 +1,12 @@
 'use client'
 
-export default function ReadingPane({ prompt }: { prompt: any }) {
+import { Prompt } from '../types';
+
+interface ReadingPaneProps {
+  prompt: Prompt | null;
+}
+
+export default function ReadingPane({ prompt }: ReadingPaneProps) {
   if (!prompt) {
     return (
       <div className="p-6 text-gray-400 italic">
@@ -17,5 +23,5 @@ export default function ReadingPane({ prompt }: { prompt: any }) {
       </p>
       <pre className="whitespace-pre-wrap text-gray-800">{prompt.content}</pre>
     </div>
-  )
+  );
 }
