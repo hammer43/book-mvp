@@ -1,15 +1,21 @@
-import React from 'react';
+'use client'
 
-const ReadingPane = () => {
+export default function ReadingPane({ prompt }: { prompt: any }) {
+  if (!prompt) {
+    return (
+      <div className="p-6 text-gray-400 italic">
+        Select a prompt on the left to view its content here.
+      </div>
+    )
+  }
+
   return (
-    <div className="w-3/4 p-6 overflow-y-scroll">
-      <h1 className="text-2xl font-bold mb-4">Prompt: Monetization Paths</h1>
-      <p className="text-gray-700 mb-2">
-        List 5 monetization paths for AI chat tools like Claude. Include pros, cons, and real-world examples.
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-2">{prompt.title}</h1>
+      <p className="text-sm text-gray-500 mb-4">
+        {prompt.llm_model ? `LLM: ${prompt.llm_model}` : 'LLM: Unknown'} • Last used: {prompt.last_used || 'N/A'}
       </p>
-      <button className="bg-blue-600 text-white px-4 py-2 rounded">Send to Claude</button>
+      <pre className="whitespace-pre-wrap text-gray-800">{prompt.content}</pre>
     </div>
-  );
-};
-
-export default ReadingPane;
+  )
+}
